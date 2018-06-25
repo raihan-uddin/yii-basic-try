@@ -16,8 +16,8 @@ $form = ActiveForm::begin([
     'id' =>'user-form',
 //    'options' => ['class' => 'form-horizontal'],
 ]); ?>
-<?= $form->field($model, 'name'); ?>
-<?= $form->field($model, 'email'); ?>
+<?= $form->field($model, 'name')->textInput()->hint('Please enter your name')->label('Name'); ?>
+<?= $form->field($model, 'email')->input('email'); ?>
 
 <!--<div class="form-group">-->
 <!--    <div class="col-lg-offset-1 col-lg-11">-->
