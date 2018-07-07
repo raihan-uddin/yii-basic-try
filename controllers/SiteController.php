@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\UserForm;
 
 class SiteController extends Controller
 {
@@ -130,5 +131,20 @@ class SiteController extends Controller
     {
         $name = 'Multibrand Infotech';
         return $this->render('hello', array('name' => $name));
+    }
+    public function actionSay($message = 'Hello')
+    {
+        return $this->render('say', ['message' => $message]);
+    }
+
+    public function actionUserForm()
+    {
+        $model = new UserForm;
+        if($model -> load(Yii::$app->request->post()) && $model->validate())
+        {
+            Yii::$app->session->setFlash('success', 'You have entered the data correctly');
+            return $this->render('entry-confirm', ['model' => $model]);
+        }
+        return $this->render('userForm', ['model' => $model]);
     }
 }
